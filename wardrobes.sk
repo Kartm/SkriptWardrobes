@@ -1,0 +1,69 @@
+options:
+	prefix: &6[&4&lWardrobes&6]&r&f
+	menu1: s;1;i;leather chestplate;n;&4Skora;l;&eKliknij &6LPM;c;wardrobe1 %loop-player%;
+	menu2: s;2;i;iron chestplate;n;&4Zbroja;l;&eKliknij &6LPM;c;wardrobe2 %loop-player%;
+	menu9: s;9;i;red wool;n;&4Zdejmij zbroje;l;&eKliknij &6LPM;c;wardrobe9 %loop-player%;
+command /wardrobe [<text>]:
+	permission: sk.wardrobe
+	trigger:
+		if argument 1 is "edit":
+			if {placing.lamp.%player%} is false:
+				set {placing.lamp.%player%} to true
+				send "{@prefix} Editing mode enabled."
+				stop
+			if {placing.lamp.%player%} is true:
+				set {placing.lamp.%player%} to false
+				send "{@prefix} Editing mode disabled."
+				stop
+		if argument 1 is "info":
+			send "%{showing.%player%}%" to player
+every 5 tick:
+	loop all players:
+		if {showing.%loop-player%} is true:
+			set {showing.%loop-player%} to false
+			execute command "/playsound random.chestopen %loop-player%"
+			execute command "/playsound random.door_open %loop-player%"
+			show "{@menu1}{@menu2}{@menu9}" with 1 rows named "{@prefix}" to loop-player
+			wait 1 tick
+			show "{@menu1}{@menu2}{@menu9}" with 1 rows named "{@prefix}" to loop-player
+			stop
+on place of wooden plank:
+	{placing.lamp.%player%} is true
+	add location of block to {wardrobes::*}
+	send "{@prefix} Wardrobe created."
+on break of wooden plank:
+	{placing.lamp.%player%} is true
+	remove location of block from {wardrobes::*}
+	send "{@prefix} Wardrobe destroyed."
+on rightclick on a plank:
+	loop {wardrobes::*}:
+		if location of targeted block is loop-value:
+			set {showing.%player%} to true
+command /wardrobe1 <player>:
+	executable by: console
+	trigger:
+		set {_player} to arg
+		equip {_player} with a leather chestplate
+		equip {_player} with a leather pants
+		equip {_player} with a leather boots
+		send "{@prefix} Ubrales stroj 1." to {_player}
+		clear {_player}
+command /wardrobe2 <player>:
+	executable by: console
+	trigger:
+		set {_player} to arg
+		equip {_player} with a iron helmet
+		equip {_player} with a iron chestplate
+		equip {_player} with a iron leggings
+		equip {_player} with a iron boots
+		send "{@prefix} Ubrales stroj 2." to {_player}
+		clear {_player}
+command /wardrobe9 <player>:
+	executable by: console
+	trigger:
+		set {_player} to arg
+		equip {_player} with none
+		equip {_player} with none
+		equip {_player} with none
+		send "{@prefix} Zdjales armor." to {_player}
+		clear {_player}
