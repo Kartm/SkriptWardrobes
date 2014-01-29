@@ -1,7 +1,22 @@
 options:
 	prefix: &6[&4&lWardrobes&6]&r&f
+	payingforclothes: true
+	menu1price: 5
+	menu2price: 5
+	menu3price: 5
+	menu4price: 5
+	menu5price: 5
+	menu6price: 5
+	menu7price: 5
+	menu8price: 5
 	menu1: s;1;i;leather chestplate;n;&4Skora;l;&eKliknij &6LPM;c;wardrobe1 %loop-player%;
 	menu2: s;2;i;iron chestplate;n;&4Zbroja;l;&eKliknij &6LPM;c;wardrobe2 %loop-player%;
+	menu3: s;2;i;iron chestplate;n;&4Zbroja;l;&eKliknij &6LPM;c;wardrobe3 %loop-player%;
+	menu4: s;2;i;iron chestplate;n;&4Zbroja;l;&eKliknij &6LPM;c;wardrobe4 %loop-player%;
+	menu5: s;2;i;iron chestplate;n;&4Zbroja;l;&eKliknij &6LPM;c;wardrobe5 %loop-player%;
+	menu6: s;2;i;iron chestplate;n;&4Zbroja;l;&eKliknij &6LPM;c;wardrobe6 %loop-player%;
+	menu7: s;2;i;iron chestplate;n;&4Zbroja;l;&eKliknij &6LPM;c;wardrobe7 %loop-player%;
+	menu8: s;2;i;iron chestplate;n;&4Zbroja;l;&eKliknij &6LPM;c;wardrobe8 %loop-player%;
 	menu9: s;9;i;red wool;n;&4Zdejmij zbroje;l;&eKliknij &6LPM;c;wardrobe9 %loop-player%;
 command /wardrobe [<text>]:
 	permission: sk.wardrobe
@@ -47,6 +62,9 @@ command /wardrobe1 <player>:
 		equip {_player} with a leather pants
 		equip {_player} with a leather boots
 		send "{@prefix} Ubrales stroj 1." to {_player}
+		if {@payingforclothes} is true:
+			execute console command "eco take %{_player}% %{@menu1price}%"
+			send "{@prefix} Zaplaciles %{@menu1price}%.
 		clear {_player}
 command /wardrobe2 <player>:
 	executable by: console
@@ -57,6 +75,87 @@ command /wardrobe2 <player>:
 		equip {_player} with a iron leggings
 		equip {_player} with a iron boots
 		send "{@prefix} Ubrales stroj 2." to {_player}
+		if {@payingforclothes} is true:
+			execute console command "eco take %{_player}% %{@menu2price}%"
+			send "{@prefix} Zaplaciles %{@menu2price}%.
+		clear {_player}
+command /wardrobe3 <player>:
+	executable by: console
+	trigger:
+		set {_player} to arg
+		equip {_player} with a iron helmet
+		equip {_player} with a iron chestplate
+		equip {_player} with a iron leggings
+		equip {_player} with a iron boots
+		send "{@prefix} Ubrales stroj 3." to {_player}
+		if {@payingforclothes} is true:
+			execute console command "eco take %{_player}% %{@menu3price}%"
+			send "{@prefix} Zaplaciles %{@menu3price}%.
+		clear {_player}
+command /wardrobe4 <player>:
+	executable by: console
+	trigger:
+		set {_player} to arg
+		equip {_player} with a iron helmet
+		equip {_player} with a iron chestplate
+		equip {_player} with a iron leggings
+		equip {_player} with a iron boots
+		send "{@prefix} Ubrales stroj 4." to {_player}
+		if {@payingforclothes} is true:
+			execute console command "eco take %{_player}% %{@menu4price}%"
+			send "{@prefix} Zaplaciles %{@menu4price}%.
+		clear {_player}
+command /wardrobe5 <player>:
+	executable by: console
+	trigger:
+		set {_player} to arg
+		equip {_player} with a iron helmet
+		equip {_player} with a iron chestplate
+		equip {_player} with a iron leggings
+		equip {_player} with a iron boots
+		send "{@prefix} Ubrales stroj 5." to {_player}
+		if {@payingforclothes} is true:
+			execute console command "eco take %{_player}% %{@menu5price}%"
+			send "{@prefix} Zaplaciles %{@menu5price}%.
+		clear {_player}
+command /wardrobe6 <player>:
+	executable by: console
+	trigger:
+		set {_player} to arg
+		equip {_player} with a iron helmet
+		equip {_player} with a iron chestplate
+		equip {_player} with a iron leggings
+		equip {_player} with a iron boots
+		send "{@prefix} Ubrales stroj 6." to {_player}
+		if {@payingforclothes} is true:
+			execute console command "eco take %{_player}% %{@menu6price}%"
+			send "{@prefix} Zaplaciles %{@menu6price}%.
+		clear {_player}
+command /wardrobe7 <player>:
+	executable by: console
+	trigger:
+		set {_player} to arg
+		equip {_player} with a iron helmet
+		equip {_player} with a iron chestplate
+		equip {_player} with a iron leggings
+		equip {_player} with a iron boots
+		send "{@prefix} Ubrales stroj 7." to {_player}
+		if {@payingforclothes} is true:
+			execute console command "eco take %{_player}% %{@menu7price}%"
+			send "{@prefix} Zaplaciles %{@menu7price}%.
+		clear {_player}
+command /wardrobe8 <player>:
+	executable by: console
+	trigger:
+		set {_player} to arg
+		equip {_player} with a iron helmet
+		equip {_player} with a iron chestplate
+		equip {_player} with a iron leggings
+		equip {_player} with a iron boots
+		send "{@prefix} Ubrales stroj 8." to {_player}
+		if {@payingforclothes} is true:
+			execute console command "eco take %{_player}% %{@menu8price}%"
+			send "{@prefix} Zaplaciles %{@menu8price}%.
 		clear {_player}
 command /wardrobe9 <player>:
 	executable by: console
